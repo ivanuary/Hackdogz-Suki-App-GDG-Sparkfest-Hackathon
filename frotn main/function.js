@@ -185,10 +185,10 @@ function openStore(store) {
     hours.textContent = formatHour(store.openHours.open) + " - " + formatHour(store.openHours.close);
 
     if(isStoreOpen(store)){
-        status.textContent = "🟢 Open";
+        status.textContent = "Open";
         status.className = "store-status open";
     }else{
-    status.textContent = "🔴 Closed";
+    status.textContent = "Closed";
     status.className = "store-status closed";
     }
 
