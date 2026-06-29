@@ -4,8 +4,8 @@
             "store_id":1,
             "store_name":"store 1",
             "store_address":"montalban, rizal",
-            "latitude": 14.6572,
-            "longitude": 121.0221,
+            "latitude": 14.66633551609936,
+            "longitude":  121.12864908301334,
             "payment_methods":["cash", "gcash"],
             "store_products":["garlic", "onion"]
         },
@@ -23,7 +23,7 @@
             "store_name":"store 3",
             "store_address":"marikina, ncr",
             "latitude": 17.6572,
-            "longitude": 200.0221,
+            "longitude": 167.0221,
             "payment_methods":["cash", "gcash"],
             "store_products":["garlic", "leaks"]
         }
