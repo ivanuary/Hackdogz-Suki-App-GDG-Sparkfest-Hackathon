@@ -1,0 +1,9 @@
+{
+  "name": "suki-palengkemap",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Suki x PalengkeMap — find and register palengke stalls on a real map.",
+  "scripts": {
+    "dev": "npx serve . -l 3000"
+  }
+}
