@@ -4,19 +4,19 @@
             "store_id":1,
             "store_name":"store 1",
             "store_address":"montalban, rizal",
-            "latitude": 14.66633551609936,
-            "longitude":  121.12864908301334,
+            "latitude": 15.6572,
+            "longitude": 127.0221,
             "payment_methods":["cash", "gcash"],
-            "store_products":["garlic", "onion"]
+            "store_products":["chicken cubes", "onion"]
         },
         {
             "store_id":2,
             "store_name":"store 2",
             "store_address":"antipolo, rizal",
-            "latitude": 15.6572,
-            "longitude": 127.0221,
+            "latitude": 14.66633551609936,
+            "longitude": 121.12864908301334,
             "payment_methods":["cash", "gcash"],
-            "store_products":["wood", "nails"]
+            "store_products":["chicken", "nails"]
         },
         {
             "store_id":3,
@@ -25,7 +25,16 @@
             "latitude": 17.6572,
             "longitude": 167.0221,
             "payment_methods":["cash", "gcash"],
-            "store_products":["garlic", "leaks"]
+            "store_products":["chicken seasoning", "leaks"]
+        },
+        {
+            "store_id":4,
+            "store_name":"store 4",
+            "store_address":"taguig, ncr",
+            "latitude": 12.6572,
+            "longitude": 165.0221,
+            "payment_methods":["cash", "gcash"],
+            "store_products":["chicken", "pork"]
         }
     ]
 }
