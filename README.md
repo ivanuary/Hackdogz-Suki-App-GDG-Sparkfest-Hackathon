@@ -7,7 +7,7 @@
 > This project is developed for Google Developers Group on PUP Sparkfest 2026 Hackathon
 
 ## Project Brief
-SUKI is a search and discovery app that helps people find palengkes, talipapa, and sari-sari stores stores near them by product, store name, or area. It is built around a simple idea: local vendors, especially small businesses, are often hard to find and compare, even though they are the stores people rely on everyday. This repository contains the hackathon minimum viable prototype with a dynamic interface and a Python backend for product search and location-based ranking.
+SUKI is a search and discovery app that helps people find palengkes, talipapa, and sari-sari stores stores near them by product. It is built around a simple idea: local vendors, especially small businesses, are often hard to find and compare, even though they are the stores people rely on everyday. This repository contains the hackathon minimum viable prototype with a dynamic interface and a Python backend for product search and location-based ranking.
 
 ## Problem
 
@@ -38,7 +38,7 @@ SUKI is not a general map app and not a delivery platform. It is a simple discov
 1. Open the app and tap `OPEN` from the splash screen to load in.
 2. Search for a product, store name, or area from the search bar.
 3. Browse results that include both exact matches, related products (e.g. searching "chicken" also returns "chicken cubes"), and partial/typo-tolerant results (e.g. searching "chckn" still returns "chicken").
-4. Browse the ranked list of matching stores, sorted by distance, with open/closed status shown.
+4. Browse the ranked list of matching stores, sorted by distance.
 5. Tap a store to view its full profile: mode of payment, products and prices, reviews, and location.
 6. Tap `FIND LOCATION` to view the store on the map and check for nearby stores.
  
