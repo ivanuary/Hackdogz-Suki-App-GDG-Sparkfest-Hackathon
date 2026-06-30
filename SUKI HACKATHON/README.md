@@ -34,10 +34,10 @@ SUKI is not a general map app and not a delivery platform. It is a simple discov
 
 ## How It Works
  
-1. Open the app and tap Start from the splash screen to load in.
+1. Open the app and tap `OPEN` from the splash screen to load in.
 2. Search for a product, store name, or area from the search bar.
 3. Browse results that include both exact matches and related products (e.g. searching "chicken" also returns "chicken cubes").
 4. Browse the ranked list of matching stores, sorted by distance, with open/closed status shown.
-5. Tap a store to view its full profile—products and prices, reviews, and location.
-6. Tap "Find Location" to view the store on the map and check for nearby stores.
+5. Tap a store to view its full profile—mode of payment, products and prices, reviews, and location.
+6. Tap `FIND LOCATION` to view the store on the map and check for nearby stores.
  
