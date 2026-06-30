@@ -21,9 +21,9 @@ SUKI is not a general map app and not a delivery platform. It is a simple discov
  
 * **For shoppers:**
   * **Search** — Look up a product, store name, or area and get back a ranked list of matching stores, sorted by distance from the user.
-  * **Discover** — Browse a store's full profile — products and prices, reviews, and location — to decide where to go before leaving the house.
+  * **Discover** — Browse a store's full profile: products and prices, reviews, and location, to decide where to go before leaving the house.
 * **For small businesses:**
-  * **Visibility** — Every store listed gets discoverable through search, without needing their own website, app, or marketing budget — turning foot-traffic-only vendors into something people can actually find.
+  * **Visibility** — Every store listed gets discoverable through search, without needing their own website, app, or marketing budget. Making foot-traffic-only vendors into something people can actually find.
 
 ## Project Tech Stack
  
