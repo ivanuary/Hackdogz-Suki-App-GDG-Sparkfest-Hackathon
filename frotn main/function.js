@@ -217,14 +217,6 @@ function openStore(store) {
             icon = "💳";
             break;
 
-        case "Debit Card":
-            icon = "💳";
-            break;
-
-        case "Credit Card":
-            icon = "💳";
-            break;
-
         default:
             icon = "✔";
     }
