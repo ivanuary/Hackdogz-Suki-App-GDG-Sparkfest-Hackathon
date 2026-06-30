@@ -201,27 +201,7 @@ function openStore(store) {
     const badge = document.createElement("div");
     badge.className = "payment-badge";
 
-    let icon = "";
-
-    switch(method){
-
-        case "Cash":
-            icon = "💵";
-            break;
-
-        case "Gcash":
-            icon = "📱";
-            break;
-
-        case "Maya":
-            icon = "💳";
-            break;
-
-        default:
-            icon = "✔";
-    }
-
-    badge.innerHTML = `${icon} ${method}`;
+    badge.innerHTML = `${method}`;
 
     mopList.appendChild(badge);
 });
