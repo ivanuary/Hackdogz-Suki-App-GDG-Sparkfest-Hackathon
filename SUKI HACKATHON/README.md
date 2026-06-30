@@ -11,7 +11,7 @@ SUKI is a search and discovery app that helps people find palengkes, talipapa, a
 
 ## Problem
 
-Finding local vendors—palengkes, talipapa, sari-sari stores, karinderya, and small specialty shops like bigasan—is mostly word-of-mouth or trial and error by instance. There is no easy way to search across them by what they sell, locate where they are, and compare them immediately. Because of this, shoppers then default to whichever store they already know, even when a closer or better-matching option exists nearby.
+Finding local vendors: palengkes, talipapa, sari-sari stores, karinderya, and small specialty shops like bigasan, is mostly word-of-mouth or trial and error by instance. There is no easy way to search across them by what they sell, locate where they are, and compare them immediately. Because of this, shoppers then default to whichever store they already know, even when a closer or better-matching option exists nearby.
 
 This is a problem on both sides. Shoppers struggle to find what they need nearby, and small businesses lose potential customers simply because they have no easy way to be found. Most of these vendors have no online presence at all, so their reach is limited to people who already happen to pass by or know them personally.
 
