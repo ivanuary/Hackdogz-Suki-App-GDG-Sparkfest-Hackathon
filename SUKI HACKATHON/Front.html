@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SUKI</title>
     <link rel="stylesheet" href="color.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 </head>
 <body>
 
-<!--splash-->
-    <div id="splash-screen">
+<div id="splash-screen">
         <img src="Images/LOOG TST.png" alt="Suki Logo" class="splash-logo"
              onerror="this.style.display='none'; document.querySelector('.splash-logo-fallback').style.display='block';" />
         <p class="splash-tagline">SUKI TAGLINE</p>
@@ -19,8 +20,7 @@
         <button class="splash-start-btn" id="splash-start-btn">OPEN</button>
     </div>
 
-<!--loading-->
-    <div id="loading-screen">
+<div id="loading-screen">
         <img src="Images/LOOG TST.png" alt="Suki Logo" class="loading-logo"
              onerror="this.style.display='none'; document.querySelector('.loading-logo-fallback').style.display='block';" />
         <div class="loading-logo-fallback" style="display:none;">🌳</div>
@@ -32,7 +32,6 @@
 
     <div class="container">
 
-        <!-- START -->
         <div class="screen active" id="start-screen">
             <div class="logo-block">
                 <img src="Images/LOOG TST.png" alt="Suki Logo" class="logo-img"
@@ -45,47 +44,39 @@
             </div>
         </div>
 
-        <!-- RESULT -->
         <div class="screen" id="results-screen">
-            <!-- Header with logo + search -->
             <div class="results-header">
                 <img src="Images/LOOG TST.png" alt="Suki" class="results-logo-img"
                      onerror="this.style.display='none';" />
                 <div class="results-search-wrap">
-                    <span class="results-search-icon"></span>
+                    <span class="results-search-icon">🔍</span>
                     <input type="text" id="results-search-input" placeholder="Hanapin ang iyong nais." autocomplete="off" />
                 </div>
                 <span class="results-menu-icon">&#9776;</span>
             </div>
 
-            <!-- LABELS -->
             <div class="results-label">MOST RELEVANT</div>
 
-            <!-- CARDS-->
             <div id="results-list"></div>
         </div>
 
-        <!-- STORES -->
         <div class="screen" id="store-screen">
 
-            <!-- Top bar: back + logo + search -->
             <div class="store-top-bar">
                 <button class="back-btn" id="back-btn">&#8592;</button>
                 <img src="Images/LOOG TST.png" alt="Suki" class="store-top-logo"
                      onerror="this.style.display='none';" />
                 <div class="store-top-search">
-                    <span class="store-top-search-icon"></span>
+                    <span class="store-top-search-icon">🔍</span>
                     <input type="text" placeholder="Hanapin ang iyong nais." autocomplete="off" />
                 </div>
-                <span class="store-top-menu"></span>
+                <span class="store-top-menu">&#9776;</span>
             </div>
 
-            <!-- image area -->
             <div class="store-banner fade-section">
                 <div class="store-banner-placeholder"></div>
             </div>
 
-            <!-- Store info -->
             <div class="store-identity-row fade-section">
                 <div class="store-name-col">
                     <div class="store-name" id="store-name">Aling Nena's Tindahan</div>
@@ -93,26 +84,22 @@
                 <div class="store-type-tag" id="store-type-tag">Sari-sari</div>
             </div>
 
-            <!-- Store hours -->
             <div class="store-hours fade-section">
                  <div class="store-status" id="store-status">Open</div>
                 <div class="store-hours-text" id="store-hours">6:00 AM - 10:00 PM</div>
             </div>
 
-            <!-- mop section -->
             <div class="payment-section fade-section">
                 <h3 class="section-title">Mode of Payments</h3>
                 <div class="payment-list" id="payment-list"></div>
             </div>
 
-            <!-- tabs-->
             <div class="store-tabs fade-section">
                 <button class="tab-pill active" data-tab="products">Products</button>
                 <button class="tab-pill" data-tab="reviews">Reviews</button>
                 <button class="tab-pill" data-tab="location">Location</button>
             </div>
 
-            <!-- ---- Products ---- -->
             <div class="products-section tab-section fade-section" id="tab-products">
                 <h3 class="section-title">Products</h3>
                 <div class="products-grid">
@@ -164,7 +151,6 @@
                 </div>
             </div>
 
-            <!-- ---- Reviews ---- -->
             <div class="reviews-section tab-section fade-section" id="tab-reviews">
                 <div class="section-header-row">
                     <h3 class="section-title">Reviews</h3>
@@ -207,21 +193,15 @@
                 <button class="read-more-btn">read more</button>
             </div>
 
-            <!-- ---- Location ---- -->
             <div class="location-section tab-section fade-section" id="tab-location">
                 <h3 class="section-title">Location</h3>
                 <div class="map-embed" id="store-map-embed">
-                    <div class="map-placeholder">
-
-                    </div>
+                    <div class="map-placeholder">📍</div>
                 </div>
-                <button class="find-location-btn" id="find-location-btn">FIND LOCATION</button>
+                <button class="find-location-btn" id="find-location-btn">FIND ON REAL MAP</button>
             </div>
 
         </div>
-        <!-- END STORE SCREEN -->
-
-        <!-- MAP -->
         <div class="screen" id="map-screen">
             <div class="map-screen-header">
                 <div class="map-logo-row">
@@ -233,26 +213,20 @@
             </div>
 
             <div class="map-search-bar">
-
-                <input type="text" placeholder="Search location..." autocomplete="off" />
-
+                <input type="text" id="mapSearchInput" placeholder="Search item, e.g. kalamansi..." autocomplete="off" oninput="handleSearch()" />
+                <button class="map-reset-btn" id="map-reset-btn" type="button" title="Clear all pins">Reset</button>
             </div>
 
             <div class="full-map-area" id="full-map-area">
-                <div class="full-map-placeholder">
-                    <span class="map-label">MAP</span>
-                </div>
+                <div id="leafletMap" style="width: 100%; height: 100%; z-index: 1;"></div>
             </div>
 
             <div class="map-bottom-sheet">
                 <div class="bottom-sheet-handle"></div>
-                <p class="bottom-sheet-hint">Swipe up to see nearby stores</p>
+                <div id="resultsPanel" class="results" style="display:none; text-align: left; margin-bottom: 10px;"></div>
+                <p class="bottom-sheet-hint">Click anywhere on the map to drop a store pin</p>
             </div>
         </div>
-        <!-- END MAP SCREEN -->
-
-    </div><!-- end .container -->
-
-    <script src="function.js"></script>
+        </div><script src="function.js"></script>
 </body>
 </html>
