@@ -7,7 +7,7 @@
 > This project is developed for Google Developers Group on PUP Sparkfest 2026 Hackathon
 
 ## Project Brief
-SUKI is a search and discovery website that helps people find palengkes, talipapa, and sari-sari stores stores near them by product. It is built around a simple idea: local vendors, especially small businesses, are often hard to find and compare, even though they are the stores people rely on everyday. This repository contains the hackathon minimum viable prototype with a dynamic interface and a Python backend for product search and location-based ranking.
+SUKI is a search and discovery web application that helps people find palengkes, talipapa, and sari-sari stores stores near them by product. It is built around a simple idea: local vendors, especially small businesses, are often hard to find and compare, even though they are the stores people rely on everyday. This repository contains the hackathon minimum viable prototype with a dynamic interface and a Python backend for product search and location-based ranking.
 
 ## Problem
 
