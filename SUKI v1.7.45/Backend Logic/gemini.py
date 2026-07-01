@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 #SET AS TRUE WHEN API KEY IS PRESENT
 GEMINI_OPEN = True
 
-load_dotenv("suki-integrated_3\Backend Logic\.env .example")
+load_dotenv("Backend Logic\.env .example")
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
@@ -21,7 +21,7 @@ Rules:
 - Return only the product name
 - No punctuation marks
 - No explanation, notes or additional text
-- If you cannot confidenty identify a product, return UNKNOWN
+- If you cannot confidently identify a product, return UNKNOWN
 
 User query:
 {user_query}
