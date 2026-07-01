@@ -44,13 +44,14 @@ SUKI is not a general map app and not a delivery platform. It is a simple discov
 
 ## Running the Project
 
-1. Create a .env file based on .env.example.
-2. Replace YOUR_API_KEY_HERE with your own Gemini API key.
-3. Set GEMINI_OPEN = True in gemini.py to enable Gemini integration (or False to disable it).
+1. Create a `.env` file based on `.env.example`.
+2. Replace `YOUR_API_KEY_HERE` with your own Gemini API key.
+3. Set `GEMINI_OPEN = True` in `gemini.py` to enable Gemini integration (or `False` to disable it).
 4. Install the required Python libraries:
-
+```bash
    pip install -r requirements.txt
-
+```
 5. Run the Flask application:
-
+```bash
    python app.py
+```
