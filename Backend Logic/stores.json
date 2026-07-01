@@ -40,7 +40,7 @@
             "latitude": 12.6572,
             "longitude": 165.0221,
             "payment_methods":["cash", "gcash"],
-            "store_products":{"chicken": 150, "tomato": 10},
+            "store_products":{"chicken": 150, "tomato paste": 10},
             "opening_time":"08:00",
             "closing_time": "20:00"
         }
