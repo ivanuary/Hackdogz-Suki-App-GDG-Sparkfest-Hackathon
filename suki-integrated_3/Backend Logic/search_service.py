@@ -1,4 +1,5 @@
 import navigation
+import gemini
 import time_logic
 
 from difflib import get_close_matches
@@ -21,7 +22,7 @@ def suggested_word(search_key:str, stores_list:list):
     
     set_all_products = set(all_products)
 
-    suggested_word = get_close_matches(search_key, list(set_all_products), n=1, cutoff=0.6)
+    suggested_word = get_close_matches(search_key, list(set_all_products), n=1, cutoff=0.7)
     
     correct_word = ""
     if len(suggested_word) == 1:
@@ -31,7 +32,7 @@ def suggested_word(search_key:str, stores_list:list):
     
 
 def search_product_via_stores(search_key:str, stores_dict:dict, user_coordinates:tuple):
-    search_key = (search_key or "").strip().lower()
+    search_key = gemini.query_to_gemini_or_not(search_key).strip().lower()
     stores_list = time_logic.is_store_open(stores_dict["store"])
 
     # No search key -> browse-all mode. Every store counts as an exact match
