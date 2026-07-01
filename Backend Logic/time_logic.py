@@ -16,6 +16,8 @@ def is_store_open(list_of_stores:list):
 
         if opening_time <= current_phil_time <= closing_time:
             store["is_open"] = True
+        else:
+            store["is_open"] = False
 
     return list_of_stores
 
