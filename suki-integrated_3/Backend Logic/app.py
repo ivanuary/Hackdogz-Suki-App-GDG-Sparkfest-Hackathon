@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, jsonify, request, send_from_directory
-from flask_cors import CORS
+
 import data_loader
 import search_service
 
@@ -14,7 +14,7 @@ FRONTEND_DIR = os.path.join(REPO_ROOT, "SUKI HACKATHON")
 # Serve Front.html/function.js/color.css/Images straight from that folder at
 # the site root, so all its existing relative paths keep working unchanged.
 app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path="")
-CORS(app)
+
 stores = data_loader.open_json_stores()
 
 # Fallback location used whenever the browser has no/denied geolocation, or
@@ -36,7 +36,7 @@ def parse_coordinates(args):
 
 @app.route("/")
 def home():
-    return send_from_directory(FRONTEND_DIR, "index.html")
+    return send_from_directory(FRONTEND_DIR, "Front.html")
 
 
 @app.route("/search")

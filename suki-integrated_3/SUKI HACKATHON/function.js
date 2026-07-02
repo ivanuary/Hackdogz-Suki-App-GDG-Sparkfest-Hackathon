@@ -50,9 +50,16 @@ function showScreen(name, options = {}) {
         target.classList.add('active');
     }
     
-    // FIX: Leaflet needs to re-calculate its size when its hidden container becomes visible
-    if (name === 'map' && typeof map !== 'undefined') {
-        setTimeout(() => map.invalidateSize(), 150);
+    // The Leaflet map is created lazily (see initMap below) the first time
+    // this screen is actually shown, because building it while the screen
+    // is still display:none gives it a 0x0 container — Leaflet then loads
+    // the wrong tiles and you just get a flat blue (ocean) square that
+    // never fixes itself. Once it exists, just make sure its size is
+    // up to date for the now-visible container.
+    if (name === 'map') {
+        initMap().then(() => {
+            if (map) setTimeout(() => map.invalidateSize(), 150);
+        });
     }
 }
 
@@ -262,6 +269,15 @@ document.getElementById('results-search-input')?.addEventListener('keydown', fun
 document.getElementById('retry-search-btn')?.addEventListener('click', function () {
     if (lastQuery) doSearch(lastQuery);
 });
+// Top search bars on the Store and Map screens use the same product search
+// as the other search inputs — they just didn't have ids or listeners wired
+// up yet, so typing/Enter did nothing.
+document.getElementById('store-top-search-input')?.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && this.value.trim() !== '') doSearch(this.value);
+});
+document.getElementById('map-top-search-input')?.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && this.value.trim() !== '') doSearch(this.value);
+});
 
 // =========================================================
 // 4. STORE UI LOGIC
@@ -304,29 +320,79 @@ function openStore(store) {
 
     showScreen('store', { slideUp: true });
     activateTab('products');
+    renderStoreMiniMap(store);
     
     document.querySelectorAll('#store-screen .fade-section').forEach(el => el.classList.remove('visible'));
     setTimeout(() => { if (screens.store) screens.store.scrollTop = 0; }, 10);
     setTimeout(initStoreFade, 50);
 }
 
+// The "LOCATION" tab used to just show a flat blue rectangle with a pin
+// emoji — a static placeholder that was never wired up to any real map.
+// This renders an actual (small, non-interactive) Leaflet map centered on
+// the store, reusing the same map instance across store visits instead of
+// re-creating it every time.
+let storeMiniMap = null;
+let storeMiniMarker = null;
+
+function renderStoreMiniMap(store) {
+    const container = document.getElementById('store-mini-map');
+    if (!container || typeof L === 'undefined') return;
+
+    const lat = Number(store.lat);
+    const lng = Number(store.lng);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+        container.innerHTML = '<div class="map-placeholder">📍</div>';
+        return;
+    }
+    // In case a previous store had no coordinates and left the fallback
+    // pin emoji behind, make sure the real map container is there.
+    if (!document.getElementById('store-mini-map')) return;
+
+    if (!storeMiniMap) {
+        storeMiniMap = L.map('store-mini-map', {
+            zoomControl: false,
+            attributionControl: false,
+            dragging: false,
+            scrollWheelZoom: false,
+            doubleClickZoom: false,
+            boxZoom: false,
+            keyboard: false,
+        });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(storeMiniMap);
+    }
+
+    storeMiniMap.setView([lat, lng], 16);
+
+    if (storeMiniMarker) storeMiniMap.removeLayer(storeMiniMarker);
+    storeMiniMarker = L.marker([lat, lng]).addTo(storeMiniMap);
+
+    // The embed is hidden (store-screen not yet active) the very first
+    // time this runs, so its container still measures 0x0 at this point —
+    // recalculate once the screen has actually become visible, the same
+    // fix used for the full Map screen.
+    setTimeout(() => storeMiniMap.invalidateSize(), 60);
+}
+
 // Map redirect logic
 document.getElementById('find-location-btn')?.addEventListener('click', () => {
-    showScreen('map', { slideUp: true }); 
-    
-    if (currentViewedStore && typeof map !== 'undefined') {
-        setTimeout(() => {
-            map.invalidateSize();
-            map.flyTo([currentViewedStore.lat, currentViewedStore.lng], 18, { animate: true, duration: 1.2 });
-            
-            if(window.mainStoreMarker) map.removeLayer(window.mainStoreMarker);
-            
-            window.mainStoreMarker = L.marker([currentViewedStore.lat, currentViewedStore.lng])
-                .addTo(map)
-                .bindPopup(`<div style="text-align:center;"><b>${currentViewedStore.name}</b><br><span style="font-size:11px;color:#888;">${currentViewedStore.location}</span></div>`)
-                .openPopup();
-        }, 250); 
-    }
+    showScreen('map', { slideUp: true });
+
+    initMap().then(() => {
+        if (currentViewedStore && map) {
+            setTimeout(() => {
+                map.invalidateSize();
+                map.flyTo([currentViewedStore.lat, currentViewedStore.lng], 18, { animate: true, duration: 1.2 });
+
+                if(window.mainStoreMarker) map.removeLayer(window.mainStoreMarker);
+
+                window.mainStoreMarker = L.marker([currentViewedStore.lat, currentViewedStore.lng])
+                    .addTo(map)
+                    .bindPopup(`<div style="text-align:center;"><b>${currentViewedStore.name}</b><br><span style="font-size:11px;color:#888;">${currentViewedStore.location}</span></div>`)
+                    .openPopup();
+            }, 250);
+        }
+    });
 });
 
 function activateTab(tabName) {
@@ -589,11 +655,25 @@ async function saveState(){
     try { if(window.storage) await window.storage.set(STORAGE_KEY, JSON.stringify({ pins, nextPinId, nextItemId })); } catch(e){}
 }
 
+let mapInitialized = false;
+let mapDataPromise = null;
+
+// Kick off geolocation + the store fetch right away (this doesn't touch the
+// DOM), so it's already resolved by the time the user opens the Map screen.
+function ensureMapData(){
+    if (!mapDataPromise) mapDataPromise = loadInitialStores();
+    return mapDataPromise;
+}
+
 async function initMap(){
+    if (mapInitialized) return;
     if(!document.getElementById('leafletMap')) return;
+    // Flip this before awaiting anything so a second call that comes in
+    // while we're still loading data doesn't create a second map instance.
+    mapInitialized = true;
 
     // Load geolocation and real store list before drawing anything
-    await loadInitialStores();
+    await ensureMapData();
     const centerPoint = [USER_COORDS.lat, USER_COORDS.lng];
 
     // Initialize map centered on the resolved location
@@ -635,7 +715,22 @@ async function initMap(){
         });
       }
     } catch(e){}
+
+    // Belt-and-suspenders: recalculate size once more after everything
+    // (tiles, markers, stored pins) has settled in, now that the container
+    // has its real, final dimensions.
+    setTimeout(() => map.invalidateSize(), 100);
 }
 
-// Initialize Leaflet Map
-document.addEventListener('DOMContentLoaded', initMap);
+// Preload geolocation + store data in the background right away so it's
+// ready almost instantly once the Map screen opens. The actual Leaflet map
+// is only created lazily, in initMap(), the first time that screen becomes
+// visible — building it earlier, while #map-screen is still display:none,
+// gives it a 0-size container and Leaflet ends up stuck showing a flat
+// blue (ocean) tile instead of the real map.
+document.addEventListener('DOMContentLoaded', () => {
+    ensureMapData();
+    if (screens.map && screens.map.classList.contains('active')) {
+        initMap();
+    }
+});

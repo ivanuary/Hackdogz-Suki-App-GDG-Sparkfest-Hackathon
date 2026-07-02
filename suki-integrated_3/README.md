@@ -4,10 +4,10 @@
   - Sydney Ryan Magsanay Jr.
   - Gabriel Ivan Morauda
   - Christian Lloyd B. Tabafunda
-> This project is developed for Google Developers Group on Campus - PUP Sparkfest 2026 Hackathon
+> This project is developed for Google Developers Group on PUP Sparkfest 2026 Hackathon
 
 ## Project Brief
-SUKI is a search and discovery web application that helps people find palengkes, talipapa, and sari-sari stores stores near them by product. It is built around a simple idea: local vendors, especially small businesses, are often hard to find and compare, even though they are the stores people rely on everyday. This repository contains the hackathon minimum viable prototype with a dynamic interface and a Python backend for product search and location-based ranking.
+SUKI is a search and discovery website that helps people find palengkes, talipapa, and sari-sari stores stores near them by product. It is built around a simple idea: local vendors, especially small businesses, are often hard to find and compare, even though they are the stores people rely on everyday. This repository contains the hackathon minimum viable prototype with a dynamic interface and a Python backend for product search and location-based ranking.
 
 ## Problem
 
@@ -30,29 +30,15 @@ SUKI is not a general map app and not a delivery platform. It is a simple discov
 * **Frontend:** `HTML`, `CSS`, and vanilla `JavaScript`—screen-based navigation (splash, loading, start, results, store, map), responsive layout for mobile and desktop.
 * **Backend:** `Python`—modular services for data loading, product search (as well as related searching with `difflib`), distance calculation (`haversine`), and result formatting.
 * **Maps:** `OpenStreetMap (OSM)`—powers the location and map views for store discovery.
-* **AI:** `Gemini API`-integrated Google technology for full, natural sentence queries.
+* **AI:** `Gemini API`-integrated Google technology for partial and typo-tolerant searches.
 * **Data:** `JSON`-based store records (name, address, coordinates, payment methods, products) as the current data source for the proof of concept.
 
 ## How It Works
  
 1. Open the app and tap `OPEN` from the splash screen to load in.
 2. Search for a product, store name, or area from the search bar.
-3. Browse results that include both exact matches, related products (e.g. searching "chicken" also returns "chicken cubes"), and sentence queries (e.g. searching "where to buy chicken?" still returns "chicken").
+3. Browse results that include both exact matches, related products (e.g. searching "chicken" also returns "chicken cubes"), and partial/typo-tolerant results (e.g. searching "chckn" still returns "chicken").
 4. Browse the ranked list of matching stores, sorted by distance.
 5. Tap a store to view its full profile: mode of payment, products and prices, reviews, and location.
 6. Tap `FIND LOCATION` to view the store on the map and check for nearby stores.
-
-## Running the Project
-
-1. Create an `.env` file based on `.env.example`.
-2. Replace `YOUR_API_KEY_HERE` with your own Gemini API key.
-3. Set `GEMINI_OPEN = True` in `gemini.py` to enable Gemini integration (or `False` to disable it).
-4. Install the required Python libraries:
-```bash
-   pip install -r requirements.txt
-```
-5. Run the Flask application:
-```bash
-   python app.py
-```
  
