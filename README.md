@@ -20,7 +20,7 @@ This is a problem on both sides. Shoppers struggle to find what they need nearby
 SUKI is not a general map app and not a delivery platform. It is a simple discovery channel for local commerce, built to serve both sides of the exchange:
  
 * **For shoppers:**
-  * **Search** — Look up a product, store name, or area and get back a ranked list of matching stores, sorted by distance from the user.
+  * **Search** — Look up a product and get back a ranked list of matching stores, sorted by distance from the user.
   * **Discover** — Browse a store's full profile: products and prices, reviews, and location, to decide where to go before leaving the house.
 * **For small businesses:**
   * **Visibility** — Every store listed gets discoverable through search, without needing their own website, app, or marketing budget. Making foot-traffic-only vendors into something people can actually find.
@@ -36,7 +36,7 @@ SUKI is not a general map app and not a delivery platform. It is a simple discov
 ## How It Works
  
 1. Open the app and tap `OPEN` from the splash screen to load in.
-2. Search for a product, store name, or area from the search bar.
+2. Search for a product from the search bar.
 3. Browse results that include both exact matches, related products (e.g. searching "chicken" also returns "chicken cubes"), and sentence queries (e.g. searching "where to buy chicken?" still returns "chicken").
 4. Browse the ranked list of matching stores, sorted by distance.
 5. Tap a store to view its full profile: mode of payment, products and prices, reviews, and location.
