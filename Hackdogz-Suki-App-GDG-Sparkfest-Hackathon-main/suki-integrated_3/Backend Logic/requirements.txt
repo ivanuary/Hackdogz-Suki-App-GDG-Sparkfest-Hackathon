@@ -1,6 +1,0 @@
-Flask
-Flask-Cors
-google-genai
-python-dotenv
-haversine
-gunicorn
