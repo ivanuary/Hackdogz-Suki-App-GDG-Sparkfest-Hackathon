@@ -59,6 +59,42 @@
             "store_products": {"rice": 55, "bigas": 55, "chicken feed": 40},
             "opening_time": "07:00",
             "closing_time": "18:00"
+        },
+        {
+            "store_id": 6,
+            "store_name": "Sari-Sari Store ni Jack",
+            "store_address": "V. Mapa, Sta. Mesa, Manila",
+            "store_type": "Sari-sari",
+            "latitude": 14.6038,
+            "longitude": 121.0176,
+            "payment_methods": ["cash"],
+            "store_products": {"milo":10, "chips":16, "milk":20},
+            "opening_time": "07:00",
+            "closing_time": "18:00"
+        },
+                {
+            "store_id": 7,
+            "store_name": "Sari-Sari Store ni Mel",
+            "store_address": "V. Mapa, Sta. Mesa, Manila",
+            "store_type": "Sari-sari",
+            "latitude": 14.6040,
+            "longitude": 121.0185,
+            "payment_methods": ["cash"],
+            "store_products": {"milo":10, "coffee":16, "biscuit":20},
+            "opening_time": "07:00",
+            "closing_time": "18:00"
+        },
+        {
+            "store_id": 8,
+            "store_name": "Christian General Merchandise",
+            "store_address": "Pureza, Sta. Mesa, Manila",
+            "store_type": "General Merchandise",
+            "latitude": 14.6010,
+            "longitude": 121.0048,
+            "payment_methods": ["cash", "gcash"],
+            "store_products": {"tsinelas": 20, "frying pans": 200, "cabinet": 700},
+            "opening_time": "05:00",
+            "closing_time": "12:00"
         }
     ]
 }
