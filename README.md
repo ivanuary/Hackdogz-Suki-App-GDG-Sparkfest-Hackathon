@@ -58,7 +58,7 @@ SUKI is not a general map app and not a delivery platform. It is a simple discov
 
 ## Features to be Implemented Soon
 
-The current prototype is read-only stored in JSON, with preloaded store data. Next steps:
+The current prototype is read-only stored in JSON, with preloaded store data. Future versions will integrate Firebase to support:
 
 * **User Sign-Up:** save favorite vendors, leave reviews, personalize search.
 * **Seller Sign-Up:** vendors register and manage their own store listings, hours, payment methods, and reviews.
